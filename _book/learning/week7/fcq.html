@@ -56,7 +56,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="1.1.7" data-basepath="../.." data-revision="Fri Oct 09 2015 14:32:33 GMT-0600 (MDT)">
+    <div class="book" data-level="1.1.7" data-basepath="../.." data-revision="Sun Oct 11 2015 22:06:17 GMT-0600 (MDT)">
     
 
 <div class="book-summary">
@@ -400,6 +400,8 @@ $.get(&apos;/data/fcq.clean.json&apos;)
      console.log(&apos;data loaded&apos;, data)
      // TODO: show in the myviz that the data is loaded
      fcqData = data          
+          $(&apos;.myviz&apos;).html(&apos;number of records load:&apos; + fcqData.length)
+
  })
 
 
@@ -426,6 +428,12 @@ function vizCollege(){
                          style=&quot;fill:${d.color};    \
                                 stroke-width:3; \
                                 stroke:rgb(0,0,0)&quot; /&gt;   \
+                    &lt;text transform=&quot;translate(0 15)&quot;&gt; \
+                        ${d.label} \
+                    &lt;/text&gt; \
+                    &lt;text transform=&quot;translate(${d.width} 15)&quot;&gt; \
+                        ${d.labelIndex} \
+                    &lt;/text&gt; \
                     &lt;/g&gt;&apos;
 
     // compile the string to get a template function
@@ -446,11 +454,19 @@ function vizCollege(){
     function computeColor(d, i) {
         return &apos;red&apos;
     }
-
+    function label(d, i){
+        return _.pluck(fcqData, &apos;CourseTitle&apos;
+            )
+    }
+    function labelIndex(d, i){
+        return i
+    }
     var viz = _.map(dataArray, function(d, i){
                 return {
                     x: computeX(d, i),
                     y: computeY(d, i),
+                    label: label(d, i),
+                    labelIndex: labelIndex(d, i),
                     width: computeWidth(d, i),
                     color: computeColor(d, i)
                 }
@@ -478,7 +494,7 @@ function vizGroupByAttribute(attributeName){
 $(&apos;button#viz-group-by-attribute&apos;).click(function(){    
     var attributeName = &apos;TODO&apos;
     vizGroupByAttribute(attributeName)
-})</code></pre><script>var code ="// pokemonData is a global variable\nfcqData = 'not loaded yet'\n\n$.get('/data/fcq.clean.json')\n .success(function(data){\n     console.log('data loaded', data)\n     // TODO: show in the myviz that the data is loaded\n     fcqData = data          \n })\n\n\nfunction vizCollege(){\n\n    // process fcqData\n\n    var groups = _.groupBy(fcqData, function(d){\n        return d['CrsPBAColl']\n    })\n\n    var dataArray = _.map(_.pairs(groups), function(p){\n        return {name: p[0], count: p[1].length}\n    })\n\n    console.log('dataArray', dataArray)\n\n\n    // define a template string\n    var tplString = '<g transform=\"translate(0 ${d.y})\"> \\\n                    <rect   \\\n                         width=\"${d.width}\" \\\n                         height=\"20\"    \\\n                         style=\"fill:${d.color};    \\\n                                stroke-width:3; \\\n                                stroke:rgb(0,0,0)\" />   \\\n                    </g>'\n\n    // compile the string to get a template function\n    var template = _.template(tplString)\n\n    function computeX(d, i) {\n        return 0\n    }\n\n    function computeWidth(d, i) {\n        return d['count'] / 5\n    }\n\n    function computeY(d, i) {\n        return i * 20\n    }\n\n    function computeColor(d, i) {\n        return 'red'\n    }\n\n    var viz = _.map(dataArray, function(d, i){\n                return {\n                    x: computeX(d, i),\n                    y: computeY(d, i),\n                    width: computeWidth(d, i),\n                    color: computeColor(d, i)\n                }\n             })\n    console.log('viz', viz)\n\n    var result = _.map(viz, function(d){\n             // invoke the compiled template function on each viz data\n             return template({d: d})\n         })\n    console.log('result', result)\n\n    $('.myviz').html('<svg width=\"100%\" height=\"100%\">' + result + '</svg>')\n}\n\n$('button#viz-college').click(vizCollege)\n\n// TODO: complete the code below\n// 1. Each horizontal bar should have a label\n// 2. Each horizontal bar should have a number indicating the count\nfunction vizGroupByAttribute(attributeName){\n\n}\n\n$('button#viz-group-by-attribute').click(function(){    \n    var attributeName = 'TODO'\n    vizGroupByAttribute(attributeName)\n})"</script></p>
+})</code></pre><script>var code ="// pokemonData is a global variable\nfcqData = 'not loaded yet'\n\n$.get('/data/fcq.clean.json')\n .success(function(data){\n     console.log('data loaded', data)\n     // TODO: show in the myviz that the data is loaded\n     fcqData = data          \n          $('.myviz').html('number of records load:' + fcqData.length)\n\n })\n\n\nfunction vizCollege(){\n\n    // process fcqData\n\n    var groups = _.groupBy(fcqData, function(d){\n        return d['CrsPBAColl']\n    })\n\n    var dataArray = _.map(_.pairs(groups), function(p){\n        return {name: p[0], count: p[1].length}\n    })\n\n    console.log('dataArray', dataArray)\n\n\n    // define a template string\n    var tplString = '<g transform=\"translate(0 ${d.y})\"> \\\n                    <rect   \\\n                         width=\"${d.width}\" \\\n                         height=\"20\"    \\\n                         style=\"fill:${d.color};    \\\n                                stroke-width:3; \\\n                                stroke:rgb(0,0,0)\" />   \\\n                    <text transform=\"translate(0 15)\"> \\\n                        ${d.label} \\\n                    </text> \\\n                    <text transform=\"translate(${d.width} 15)\"> \\\n                        ${d.labelIndex} \\\n                    </text> \\\n                    </g>'\n\n    // compile the string to get a template function\n    var template = _.template(tplString)\n\n    function computeX(d, i) {\n        return 0\n    }\n\n    function computeWidth(d, i) {\n        return d['count'] / 5\n    }\n\n    function computeY(d, i) {\n        return i * 20\n    }\n\n    function computeColor(d, i) {\n        return 'red'\n    }\n    function label(d, i){\n        return _.pluck(fcqData, 'CourseTitle'\n            )\n    }\n    function labelIndex(d, i){\n        return i\n    }\n    var viz = _.map(dataArray, function(d, i){\n                return {\n                    x: computeX(d, i),\n                    y: computeY(d, i),\n                    label: label(d, i),\n                    labelIndex: labelIndex(d, i),\n                    width: computeWidth(d, i),\n                    color: computeColor(d, i)\n                }\n             })\n    console.log('viz', viz)\n\n    var result = _.map(viz, function(d){\n             // invoke the compiled template function on each viz data\n             return template({d: d})\n         })\n    console.log('result', result)\n\n    $('.myviz').html('<svg width=\"100%\" height=\"100%\">' + result + '</svg>')\n}\n\n$('button#viz-college').click(vizCollege)\n\n// TODO: complete the code below\n// 1. Each horizontal bar should have a label\n// 2. Each horizontal bar should have a number indicating the count\nfunction vizGroupByAttribute(attributeName){\n\n}\n\n$('button#viz-group-by-attribute').click(function(){    \n    var attributeName = 'TODO'\n    vizGroupByAttribute(attributeName)\n})"</script></p>
 
                     
                     </section>
@@ -514,6 +530,10 @@ $(&apos;button#viz-group-by-attribute&apos;).click(function(){
 
     
     <script src="../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
     
 
 <script>
