@@ -5,7 +5,7 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Click | book2</title>
+        <title>Yelp | book2</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.2.0">
@@ -45,10 +45,10 @@
         
     
     
-    <link rel="next" href="../../learning/week7/jquery-form.html" />
+    <link rel="next" href="../../hackathons/yelp/warmup.html" />
     
     
-    <link rel="prev" href="../../learning/week7/netapp.html" />
+    <link rel="prev" href="../../hackathons/netapp/index.html" />
     
 
         <!-- head:end -->
@@ -56,7 +56,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="1.1.2" data-basepath="../.." data-revision="Wed Oct 14 2015 17:37:09 GMT-0600 (MDT)">
+    <div class="book" data-level="2.2" data-basepath="../.." data-revision="Wed Oct 14 2015 17:37:09 GMT-0600 (MDT)">
     
 
 <div class="book-summary">
@@ -133,7 +133,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.1.2" data-path="learning/week7/jquery-click.html">
+        <li class="chapter " data-level="1.1.2" data-path="learning/week7/jquery-click.html">
             
                 
                     <a href="../../learning/week7/jquery-click.html">
@@ -264,7 +264,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2" data-path="hackathons/yelp/index.html">
+        <li class="chapter active" data-level="2.2" data-path="hackathons/yelp/index.html">
             
                 
                     <a href="../../hackathons/yelp/index.html">
@@ -440,77 +440,51 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="jquery-click-handler">JQuery Click Handler</h1>
-<ol>
-<li><button id="hello">Hello</button> Display Hello </li>
-<li><button id="hi">Hi</button> Display Hi </li>
-<li><button id="taller">Taller</button> Make it taller</li>
-<li><button id="shorter">Shorter</button> Make it shorter</li>
-<li><button id="red" style="fill:red;">Red</button> Set background color to red</li>
-<li><button id="green">Green</button> Set background color to green</li>
-<li><button id="onebar">One Bar</button></li>
-<li><button id="twobars">Two Bars</button></li>
-<li><button id="fivebars">Five Bars</button></li>
-<li><button id="fivegreenbars">Five Green Bars</button></li>
-</ol>
-
-<h2 id="viz">Viz</h2>
-<div class="myviz" style="width:100%; height:100px; border: 1px black solid;">
-</div>
-
-
-<p><pre><code>console.log(&apos;adding click event handlers&apos;)
-
-$(&apos;button#hello&apos;).click(function(){
-    console.log(&apos;hello button is clicked&apos;)
-    $(&apos;.myviz&apos;).html(&quot;hello&quot;)
-})
-
-$(&apos;button#hi&apos;).click(function(){
-    console.log(&apos;hello button is clicked&apos;)
-    $(&apos;.myviz&apos;).html(&quot;hi&quot;)
-})
-
-$(&apos;button#taller&apos;).click(function(){
-    console.log(&apos;taller button is clicked&apos;)
-    $(&apos;.myviz&apos;).height(500)
-})
-
-$(&apos;button#shorter&apos;).click(function(){
-    console.log(&apos;shorter button is clicked&apos;)
-    $(&apos;.myviz&apos;).height(100)
-})
-
-// TODO: add an event handler for the &quot;Red&quot; button to set the background color
-// of the viz block to red
-$(&apos;button#red&apos;).click(function(){
-    $(&apos;.myviz&apos;).css(&quot;background-color&quot;,&quot;red&quot;)
-})
-// TODO: add an event handler for the &quot;Green&quot; button to set the background color
-// of the viz block to green
-$(&apos;button#green&apos;).click(function(){
-    $(&apos;.myviz&apos;).css(&quot;background-color&quot;,&quot;green&quot;)
-})
-$(&apos;button#onebar&apos;).click(function(){
-    var svg = &quot;&lt;svg&gt;&lt;rect height=&apos;50&apos; width=&apos;10&apos;&gt;&lt;/rect&gt;&lt;/svg&gt;&quot;
-    $(&apos;.myviz&apos;).html(svg)
-})
-
-$(&apos;button#twobars&apos;).click(function(){
-    var svg = &quot;&lt;svg&gt;&lt;rect height=&apos;50&apos; width=&apos;10&apos;/&gt;&lt;rect height=&apos;50&apos; width=&apos;10&apos; x=&apos;20&apos;/&gt;&lt;/svg&gt;&quot;
-    $(&apos;.myviz&apos;).html(svg)
-})
-
-// TODO: add an event handler for the &quot;Five Bars&quot; button to display five bars
-$(&apos;button#fivebars&apos;).click(function(){
-    var svg = &quot;&lt;svg&gt;&lt;rect height=&apos;50&apos; width=&apos;10&apos;/&gt;&lt;rect height=&apos;50&apos; width=&apos;10&apos; x=&apos;20&apos;/&gt;&lt;rect height=&apos;50&apos; width=&apos;10&apos; x=&apos;40&apos;/&gt;&lt;rect height=&apos;50&apos; width=&apos;10&apos; x=&apos;60&apos;/&gt;&lt;rect height=&apos;50&apos; width=&apos;10&apos; x=&apos;80&apos;/&gt;&lt;/svg&gt;&quot;
-    $(&apos;.myviz&apos;).html(svg)
-})
-// TODO: add an event handler for the &quot;Five Green Bars&quot; button to display five green bars
-$(&apos;button#fivegreenbars&apos;).click(function(){
-    var svg = &quot;&lt;svg&gt;&lt;rect height=&apos;50&apos; width=&apos;10&apos;/&gt;&lt;rect height=&apos;50&apos; width=&apos;10&apos; x=&apos;20&apos;/&gt;&lt;rect height=&apos;50&apos; width=&apos;10&apos; x=&apos;40&apos;/&gt;&lt;rect height=&apos;50&apos; width=&apos;10&apos; x=&apos;60&apos;/&gt;&lt;rect height=&apos;50&apos; width=&apos;10&apos; x=&apos;80&apos;/&gt;&lt;/svg&gt;&quot;
-    $(&apos;.myviz&apos;).html(svg).css(&apos;fill&apos;, &apos;green&apos;)
-})</code></pre><script>var code ="console.log('adding click event handlers')\n\n$('button#hello').click(function(){\n    console.log('hello button is clicked')\n    $('.myviz').html(\"hello\")\n})\n\n$('button#hi').click(function(){\n    console.log('hello button is clicked')\n    $('.myviz').html(\"hi\")\n})\n\n$('button#taller').click(function(){\n    console.log('taller button is clicked')\n    $('.myviz').height(500)\n})\n\n$('button#shorter').click(function(){\n    console.log('shorter button is clicked')\n    $('.myviz').height(100)\n})\n\n// TODO: add an event handler for the \"Red\" button to set the background color\n// of the viz block to red\n$('button#red').click(function(){\n    $('.myviz').css(\"background-color\",\"red\")\n})\n// TODO: add an event handler for the \"Green\" button to set the background color\n// of the viz block to green\n$('button#green').click(function(){\n    $('.myviz').css(\"background-color\",\"green\")\n})\n$('button#onebar').click(function(){\n    var svg = \"<svg><rect height='50' width='10'></rect></svg>\"\n    $('.myviz').html(svg)\n})\n\n$('button#twobars').click(function(){\n    var svg = \"<svg><rect height='50' width='10'/><rect height='50' width='10' x='20'/></svg>\"\n    $('.myviz').html(svg)\n})\n\n// TODO: add an event handler for the \"Five Bars\" button to display five bars\n$('button#fivebars').click(function(){\n    var svg = \"<svg><rect height='50' width='10'/><rect height='50' width='10' x='20'/><rect height='50' width='10' x='40'/><rect height='50' width='10' x='60'/><rect height='50' width='10' x='80'/></svg>\"\n    $('.myviz').html(svg)\n})\n// TODO: add an event handler for the \"Five Green Bars\" button to display five green bars\n$('button#fivegreenbars').click(function(){\n    var svg = \"<svg><rect height='50' width='10'/><rect height='50' width='10' x='20'/><rect height='50' width='10' x='40'/><rect height='50' width='10' x='60'/><rect height='50' width='10' x='80'/></svg>\"\n    $('.myviz').html(svg).css('fill', 'green')\n})"</script></p>
+                        <h1 id="yelp">Yelp</h1>
+<p>The objective of this hackathon is to design and prototype an interactive
+visualization interface for exploring the Yelp dataset. Here we assume a user
+in the <em>data exploration</em> mode and may not have specific questions in mind.
+Instead of answering specific questions, your interface should support
+ <em>a class of questions</em>.</p>
+<p>Some examples of <em>question classes</em> for the Yelp dataset are:</p>
+<ul>
+<li>How many businesses are in (CITY)?</li>
+<li>How many businesses in the (X) categories?</li>
+<li>What is the distribution of businesses across categories that have
+an attribute (Y)?</li>
+</ul>
+<p>As you can see, each question class has a particular template with &quot;blanks&quot; to
+fill in. Your interface should provide appropriate input fields (e.g., text,
+dropdown) for users to fill in those blanks and get a different result.</p>
+<h2 id="business">business</h2>
+<p><pre><code>
+{
+    &apos;type&apos;: &apos;business&apos;,
+    &apos;business_id&apos;: (encrypted business id),
+    &apos;name&apos;: (business name),
+    &apos;neighborhoods&apos;: [(hood names)],
+    &apos;full_address&apos;: (localized address),
+    &apos;city&apos;: (city),
+    &apos;state&apos;: (state),
+    &apos;latitude&apos;: latitude,
+    &apos;longitude&apos;: longitude,
+    &apos;stars&apos;: (star rating, rounded to half-stars),
+    &apos;review_count&apos;: review count,
+    &apos;categories&apos;: [(localized category names)]
+    &apos;open&apos;: True / False (corresponds to closed, not business hours),
+    &apos;hours&apos;: {
+        (day_of_week): {
+            &apos;open&apos;: (HH:MM),
+            &apos;close&apos;: (HH:MM)
+        },
+        ...
+    },
+    &apos;attributes&apos;: {
+        (attribute_name): (attribute_value),
+        ...
+    },
+}
+</code></pre></p>
 
                     
                     </section>
@@ -521,10 +495,10 @@ $(&apos;button#fivegreenbars&apos;).click(function(){
         </div>
 
         
-        <a href="../../learning/week7/netapp.html" class="navigation navigation-prev " aria-label="Previous page: NetApp"><i class="fa fa-angle-left"></i></a>
+        <a href="../../hackathons/netapp/index.html" class="navigation navigation-prev " aria-label="Previous page: NetApp"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../learning/week7/jquery-form.html" class="navigation navigation-next " aria-label="Next page: Form"><i class="fa fa-angle-right"></i></a>
+        <a href="../../hackathons/yelp/warmup.html" class="navigation navigation-next " aria-label="Next page: Warmup"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
